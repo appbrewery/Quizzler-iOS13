@@ -13,14 +13,16 @@ You will program a trivia quiz app. If you have another field of expertise such 
 
 ## What you will learn
 
+* How to programmatically change UI elements such as Labels and Buttons.
 * What is a design pattern and how is it used in programming.
 * How to use the Model-View-Controller or MVC pattern for app development.
-* Swift structures and functions with outputs.
+* Learn about Swift Structures how to instantiate a struct instance.
+* Understand the difference between value types and reference types. 
+* Learn about Swift Classes and creating Objects.
+* Compare Swift Classes with Swift Structs and know when to use which.
 * Learn about Object Oriented Programming.
-* Learn to use UIAlertControllers to display popups to the user.
 * How to refactor code and stay organised.
-* Learn about object initialisation. 
-* How to programmatically change UI elements such as Labels and Views.
+
 
 
 ## Default Quiz
