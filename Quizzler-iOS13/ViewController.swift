@@ -28,8 +28,7 @@ class ViewController: UIViewController {
         Question("The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.", "False"),
         Question("No piece of square dry paper can be folded in half more than 7 times.", "False"),
         Question("Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", "True")
-]
-   
+    ]
     
     var questionNumber : Int = 0
     
@@ -38,7 +37,7 @@ class ViewController: UIViewController {
         
         initUI()
     }
-
+    
     @IBAction func selectAnswer(_ sender: UIButton) {
         let userAnswer = sender.currentTitle!
         let actualAnswer = quiz[questionNumber].answer
