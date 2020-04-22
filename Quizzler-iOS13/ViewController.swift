@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
+    struct quizz {
+        
+    }
+    
     let quiz = [
         ["Four + Two is equal to Six.", "True"],
         ["Five - Three is greater than One.", "True"],
@@ -39,7 +43,12 @@ class ViewController: UIViewController {
             print("Wrong")
         }
         
-        questionNumber += 1
+        if questionNumber + 1 < quiz.count {
+            questionNumber += 1
+        } else {
+            questionNumber = 0
+        }
+        
         updateUI()
     }
     
