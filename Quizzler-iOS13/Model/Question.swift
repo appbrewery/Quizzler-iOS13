@@ -12,3 +12,9 @@ struct Question {
     var q: String
     var a: String
 }
+
+struct QuestionMultiple {
+    var q: String
+    var a: [String]
+    var correctAnswer: String
+}

@@ -9,6 +9,9 @@
 import Foundation
 
 struct QuizBrain {
+    
+    let quizIsMultiple = true
+    
     let quiz = [
         Question(q: "A slug's blood is green.", a: "True"),
         Question(q: "Approximately one quarter of human bones are in the feet.", a: "True"),
@@ -24,23 +27,55 @@ struct QuizBrain {
         Question(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
     ]
     
+    let multipleQuiz = [
+        QuestionMultiple(q: "Which is the largest organ in the human body?", a: ["Heart", "Skin", "Large Intestine"], correctAnswer: "Skin"),
+        QuestionMultiple(q: "Five dollars is worth how many nickels?", a: ["25", "50", "100"], correctAnswer: "100"),
+        QuestionMultiple(q: "What do the letters in the GMT time zone stand for?", a: ["Global Meridian Time", "Greenwich Mean Time", "General Median Time"], correctAnswer: "Greenwich Mean Time"),
+        QuestionMultiple(q: "What is the French word for 'hat'?", a: ["Chapeau", "Écharpe", "Bonnet"], correctAnswer: "Chapeau"),
+        QuestionMultiple(q: "In past times, what would a gentleman keep in his fob pocket?", a: ["Notebook", "Handkerchief", "Watch"], correctAnswer: "Watch"),
+        QuestionMultiple(q: "How would one say goodbye in Spanish?", a: ["Au Revoir", "Adiós", "Salir"], correctAnswer: "Adiós"),
+        QuestionMultiple(q: "Which of these colours is NOT featured in the logo for Google?", a: ["Green", "Orange", "Blue"], correctAnswer: "Orange"),
+        QuestionMultiple(q: "What alcoholic drink is made from molasses?", a: ["Rum", "Whisky", "Gin"], correctAnswer: "Rum"),
+        QuestionMultiple(q: "What type of animal was Harambe?", a: ["Panda", "Gorilla", "Crocodile"], correctAnswer: "Gorilla"),
+        QuestionMultiple(q: "Where is Tasmania located?", a: ["Indonesia", "Australia", "Scotland"], correctAnswer: "Australia")
+    ]
+    
     var questionNumber = 0
     var score = 0
     
     mutating func checkAnswer(_ userAnswer: String) -> Bool {
+        if(quizIsMultiple){
+            if multipleQuiz[questionNumber].correctAnswer == userAnswer {
+                score += 1;
+                return true
+            } else {
+                return false
+            }
+        }
         if quiz[questionNumber].a == userAnswer {
             score += 1;
             return true
         } else {
             return false
         }
+        
     }
     
     func getQuestiontext() -> String {
+        if(quizIsMultiple){
+            return multipleQuiz[questionNumber].q
+        }
         return quiz[questionNumber].q
     }
     
+    func getAnswerTexts() -> [String] {
+        return multipleQuiz[questionNumber].a
+    }
+    
     func getProgress() -> Float {
+        if(quizIsMultiple){
+            return Float(questionNumber+1) / Float(multipleQuiz.count)
+        }
         return Float(questionNumber+1) / Float(quiz.count)
     }
     
@@ -49,11 +84,20 @@ struct QuizBrain {
     }
     
     mutating func setNextQuestion() {
-        if(questionNumber + 1 < quiz.count) {
-            questionNumber += 1
+        if quizIsMultiple {
+            if questionNumber + 1 < multipleQuiz.count {
+                questionNumber += 1
+            } else {
+                questionNumber = 0
+                score = 0
+            }
         } else {
-            questionNumber = 0
-            score = 0
+            if questionNumber + 1 < quiz.count {
+                questionNumber += 1
+            } else {
+                questionNumber = 0
+                score = 0
+            }
         }
     }
 }
