@@ -10,7 +10,7 @@ import Foundation
 
 struct QuizBrain {
     
-    let quizIsMultiple = true
+    let quizIsMultiple = false
     
     let quiz = [
         Question(q: "A slug's blood is green.", a: "True"),

@@ -27,8 +27,8 @@ class ViewController: UIViewController {
             choose3ButtonUI.isHidden = false
             setMultipleChooseAnswerTitles()
         } else {
-            choose1ButtonUI.titleLabel?.text = "True"
-            choose2ButtonUI.titleLabel?.text = "False"
+            choose1ButtonUI.setTitle("True", for: .normal)
+            choose2ButtonUI.setTitle( "false", for: .normal)
             choose3ButtonUI.isHidden = true
         }
         updateUI()
@@ -55,9 +55,9 @@ class ViewController: UIViewController {
     
     func setMultipleChooseAnswerTitles() {
         let answerArray = self.quizBrain.getAnswerTexts()
-        self.choose1ButtonUI.titleLabel?.text = answerArray[0]
-        self.choose2ButtonUI.titleLabel?.text = answerArray[1]
-        self.choose3ButtonUI.titleLabel?.text = answerArray[2]
+        self.choose1ButtonUI.setTitle(answerArray[0], for: .normal)
+        self.choose2ButtonUI.setTitle(answerArray[1], for: .normal)
+        self.choose3ButtonUI.setTitle(answerArray[2], for: .normal)
     }
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
