@@ -17,9 +17,10 @@ class ViewController: UIViewController {
     var questionNumber = 0
     
     let quiz = [
-        "You are going to be Java 11 OCP certified by 8 July 2022",
-        "You are going to master IOS develpment by 8 July 2022",
-        "You are going to master JavaScript and NodeJS by 8 July 2022"
+        ["You are going to be Java 11 OCP certified by 8 July 2022!", "True"],
+        ["You are going to master IOS develpment by 8 July 2022!", "True"],
+        ["You are going to master JavaScript and NodeJS by 8 July 2022!", "True"],
+        ["Are you going to be a Therapist in the next few minutes?", "False"]
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +28,25 @@ class ViewController: UIViewController {
     }
 
     @IBAction func answerButtonPressed(_ sender: UIButton) {
-        questionNumber += 1
+        let userAnswer: String = sender.currentTitle!
+        let actualAnswer: String = quiz[questionNumber][1]
+        
+        if userAnswer == actualAnswer {
+            print("Correct")
+        } else {
+            print("Incorrect")
+        }
+        
+        if questionNumber == quiz.count - 1 {
+            questionNumber = 0
+        } else {
+            questionNumber += 1
+        }
         updateUI()
     }
     
     func updateUI() {
-        questionLabel.text = quiz[questionNumber]
+        questionLabel.text = quiz[questionNumber][0 ]
     }
     
 }
