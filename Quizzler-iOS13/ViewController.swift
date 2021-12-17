@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
+    var questionNumber = 0
     
     let quiz = [
         "You are going to be Java 11 OCP certified by 8 July 2022",
@@ -22,10 +23,16 @@ class ViewController: UIViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionLabel.text = quiz.randomElement()
+        updateUI()
     }
 
     @IBAction func answerButtonPressed(_ sender: UIButton) {
+        questionNumber += 1
+        updateUI()
+    }
+    
+    func updateUI() {
+        questionLabel.text = quiz[questionNumber]
     }
     
 }
