@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -14,7 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
-    var questionNumber = 0
     
     let quiz = [
         Question(q: "A slug's blood is green.", a: "True"),
@@ -30,6 +30,9 @@ class ViewController: UIViewController {
         Question(q: "No piece of square dry paper can be folded in half more than 7 times.", a: "False"),
         Question(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
     ]
+    
+    var questionNumber = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
@@ -41,8 +44,10 @@ class ViewController: UIViewController {
         
         if userAnswer == actualAnswer {
             print("Correct")
+            sender.backgroundColor = UIColor.green
         } else {
             print("Incorrect")
+            sender.backgroundColor = UIColor.red
         }
         
         if questionNumber == quiz.count - 1 {
@@ -50,11 +55,15 @@ class ViewController: UIViewController {
         } else {
             questionNumber += 1
         }
-        updateUI()
+        
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
     }
     
-    func updateUI() {
+    @objc func updateUI() {
         questionLabel.text = quiz[questionNumber].q
+        trueButton.backgroundColor = UIColor.clear
+        falseButton.backgroundColor = UIColor.clear
+        progressBar.progress = Float(questionNumber + 1) / Float(quiz.count)
     }
     
 }
