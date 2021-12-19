@@ -12,10 +12,11 @@ import AVFoundation
 class ViewController: UIViewController {
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var choiceOne: UIButton!
+    @IBOutlet weak var choiceTwo: UIButton!
+    @IBOutlet weak var choiceThree: UIButton!
     var quizBrain = QuizBrain()
     
     override func viewDidLoad() {
@@ -40,10 +41,13 @@ class ViewController: UIViewController {
     @objc func updateUI() {
         progressBar.progress = quizBrain.getProgress()
         questionLabel.text = quizBrain.getQuestionText()
+        choiceOne.setTitle(quizBrain.getQuestionAnswerOptions()[0], for: .normal)
+        choiceTwo.setTitle(quizBrain.getQuestionAnswerOptions()[1], for: .normal)
+        choiceThree.setTitle(quizBrain.getQuestionAnswerOptions()[2], for: .normal)
         scoreLabel.text = "Score: \(quizBrain.getScore())"
-        trueButton.backgroundColor = UIColor.clear
-        falseButton.backgroundColor = UIColor.clear
+        choiceOne.backgroundColor = UIColor.clear
+        choiceTwo.backgroundColor = UIColor.clear
+        choiceThree.backgroundColor = UIColor.clear
     }
-    
 }
 
