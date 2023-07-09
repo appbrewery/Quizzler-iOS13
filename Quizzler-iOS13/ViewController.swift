@@ -46,6 +46,7 @@ class ViewController: UIViewController {
         
         if userAnswer == correctAnswer {
             sender.backgroundColor = UIColor.green
+            print("Right")
         } else {
             sender.backgroundColor = UIColor.red
         }
