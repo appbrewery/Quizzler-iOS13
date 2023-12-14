@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var timer = Timer()
+    var totalTime = 0
+    var secondsPassed = 0
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
@@ -58,8 +60,8 @@ class ViewController: UIViewController {
         } else {
             questionNumber = 0
         }
-        
-        timer = Timer.scheduledTimer(timeInterval: 2.0, target:self, selector: #selector(updateUI), userInfo:nil, repeats: true)
+      
+        Timer.scheduledTimer(timeInterval: 0.2, target:self, selector: #selector(updateUI), userInfo:nil, repeats: false)
         
         
     }
@@ -68,6 +70,8 @@ class ViewController: UIViewController {
         questionLabel.text = quiz[questionNumber].text
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
+        
+        progressBar.progress = Float(questionNumber + 1) / Float(quiz.count)
     }
     
 }
