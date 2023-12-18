@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var totalTime = 0
     var secondsPassed = 0
     
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var trueButton: UIButton!
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
         falseButton.backgroundColor = UIColor.clear
         
         progressBar.progress = quizBrain.getProgressBar()
+        scoreLabel.text = "Score: \(quizBrain.getScore())"
     }
     
 }
